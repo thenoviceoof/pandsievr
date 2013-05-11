@@ -6,5 +6,6 @@
     
 	<Button
 	    android:layout_height="fill_parent"
-	    android:layout_width="fill_parent" />
+	    android:layout_width="fill_parent"
+	    android:text="Hello World" />
 </LinearLayout>

@@ -5,12 +5,13 @@
     android:orientation="vertical"
     android:divider="?android:attr/dividerHorizontal" >
 
-    <Button
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_weight="1"
-        android:text="Hello" />
-    
+    <EditText
+        android:id="@+id/note"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="top|left"
+        android:inputType="textMultiLine" />
+
     <LinearLayout
         style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"

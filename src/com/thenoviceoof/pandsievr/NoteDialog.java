@@ -40,9 +40,9 @@ public class NoteDialog extends Activity {
 		if(text.length() > 0) {
 			Toast t = Toast.makeText(getApplicationContext(), "Saving draft...", Toast.LENGTH_SHORT);
 			t.show();
-			prefsEditor.putString("note", text);
-			prefsEditor.commit();
 		}
+		prefsEditor.putString("note", text);
+		prefsEditor.commit();
 	}
 
 	public void saveMessage(View view) {

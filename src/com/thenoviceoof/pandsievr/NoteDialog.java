@@ -59,6 +59,8 @@ public class NoteDialog extends Activity {
 			note.setContent(EvernoteUtil.NOTE_PREFIX + contents + EvernoteUtil.NOTE_SUFFIX);
 			try {
 				final Activity noteDialog = this;
+				Toast t = Toast.makeText(getApplicationContext(), "Trying to upload thought...", Toast.LENGTH_SHORT);
+				t.show();
 				mEvernoteService.getClientFactory().createNoteStoreClient().createNote(note, new OnClientCallback<Note>() {
 					@Override
 					public void onSuccess(final Note data) {
@@ -66,7 +68,6 @@ public class NoteDialog extends Activity {
 						// delete the note
 						EditText t = (EditText)noteDialog.findViewById(R.id.note);
 						t.setText("");
-						noteDialog.finish();
 					}
 
 					@Override

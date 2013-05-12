@@ -6,6 +6,7 @@ import java.io.InputStream;
 import com.evernote.client.android.EvernoteSession;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +35,22 @@ public class EvernoteLogin extends Activity {
 		// try to authenticate
 		EvernoteSession mEvernoteService = EvernoteSession.getInstance(this, consumer_key, consumer_secret, EVERNOTE_SERVICE);
 		mEvernoteService.authenticate(this);
-		// check: if successful, route back to note and post
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(requestCode) {
+		// Update UI when oauth activity returns result
+		case EvernoteSession.REQUEST_CODE_OAUTH:
+			if (resultCode == Activity.RESULT_OK) {
+				// check: if successful, route back to note and post
+				finish();
+			} else {
+				Toast t = Toast.makeText(getApplicationContext(), "Evernote could not authenticate", Toast.LENGTH_SHORT);
+				t.show();
+			}
+			break;
+		}
 	}
 }

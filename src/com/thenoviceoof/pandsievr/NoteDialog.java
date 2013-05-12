@@ -17,8 +17,6 @@ import android.widget.Toast;
 public class NoteDialog extends Activity {
 	private static final EvernoteSession.EvernoteService EVERNOTE_SERVICE = EvernoteSession.EvernoteService.SANDBOX;
 
-	private EditText noteText = (EditText)findViewById(R.id.note);
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,17 +31,20 @@ public class NoteDialog extends Activity {
 		EvernoteSession mEvernoteService = EvernoteSession.getInstance(this, consumer_key, consumer_secret, EVERNOTE_SERVICE);
 		if(mEvernoteService.isLoggedIn()) {
 			// upload the note
+			EditText noteText = (EditText)findViewById(R.id.note);
 			String contents = noteText.getText().toString();
 			Note note = new Note();
-			note.setTitle("");
+			note.setTitle("Untitled");
 			note.setContent(EvernoteUtil.NOTE_PREFIX + contents + EvernoteUtil.NOTE_SUFFIX);
 			try {
+				final Activity noteDialog = this;
 				mEvernoteService.getClientFactory().createNoteStoreClient().createNote(note, new OnClientCallback<Note>() {
 					@Override
 					public void onSuccess(final Note data) {
 						Toast.makeText(getApplicationContext(), "Thought uploaded", Toast.LENGTH_SHORT).show();
 						// delete the note
 						// ...
+						noteDialog.finish();
 					}
 
 					@Override

@@ -8,7 +8,7 @@
     <EditText
         android:id="@+id/note"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="150dp"
         android:gravity="top|left"
         android:hint="What's up?"
         android:inputType="textMultiLine" />

@@ -43,7 +43,7 @@ for android development.
 
 LICENSE
 --------------------------------------------------------------------------------
-Copyright (c) <2013> <thenoviceoof>
+Copyright (c) &lt;2013&gt; &lt;thenoviceoof&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

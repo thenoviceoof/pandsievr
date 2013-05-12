@@ -8,6 +8,7 @@ import com.evernote.thrift.transport.TTransportException;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,10 +18,31 @@ import android.widget.Toast;
 public class NoteDialog extends Activity {
 	private static final EvernoteSession.EvernoteService EVERNOTE_SERVICE = EvernoteSession.EvernoteService.SANDBOX;
 
+	public EditText noteText;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.note_dialog);
+		noteText = (EditText)findViewById(R.id.note);
+		// populate the text
+		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+		String note = prefs.getString("note", "");
+		noteText.setText(note);
+	}
+
+	public void onStop() {
+		super.onStop();
+		// save the text
+		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+		SharedPreferences.Editor prefsEditor = prefs.edit();
+		String text = noteText.getText().toString();
+		if(text.length() > 0) {
+			Toast t = Toast.makeText(getApplicationContext(), "Saving draft...", Toast.LENGTH_SHORT);
+			t.show();
+			prefsEditor.putString("note", text);
+			prefsEditor.commit();
+		}
 	}
 
 	public void saveMessage(View view) {
@@ -31,7 +53,6 @@ public class NoteDialog extends Activity {
 		EvernoteSession mEvernoteService = EvernoteSession.getInstance(this, consumer_key, consumer_secret, EVERNOTE_SERVICE);
 		if(mEvernoteService.isLoggedIn()) {
 			// upload the note
-			EditText noteText = (EditText)findViewById(R.id.note);
 			String contents = noteText.getText().toString();
 			Note note = new Note();
 			note.setTitle("Untitled");

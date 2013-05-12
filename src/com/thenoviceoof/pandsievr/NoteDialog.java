@@ -64,7 +64,8 @@ public class NoteDialog extends Activity {
 					public void onSuccess(final Note data) {
 						Toast.makeText(getApplicationContext(), "Thought uploaded", Toast.LENGTH_SHORT).show();
 						// delete the note
-						// ...
+						EditText t = (EditText)noteDialog.findViewById(R.id.note);
+						t.setText("");
 						noteDialog.finish();
 					}
 

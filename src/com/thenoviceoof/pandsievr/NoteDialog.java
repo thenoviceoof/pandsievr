@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -29,6 +30,8 @@ public class NoteDialog extends Activity {
 		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 		String note = prefs.getString("note", "");
 		noteText.setText(note);
+		// get us a keyboard right away
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 	}
 
 	public void onStop() {

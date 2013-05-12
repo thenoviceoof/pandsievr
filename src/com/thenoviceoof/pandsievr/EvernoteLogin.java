@@ -21,26 +21,16 @@ public class EvernoteLogin extends Activity {
 	}
 
 	public void loginEvernote(View view) {
-		String consumer_key = "";
-		String consumer_secret = "";
-		// fetch the API keys
-		try {
-			InputStream in = getAssets().open("EvernoteAPIKeys.txt");
-			StringBuffer stream = new StringBuffer();
-			byte[] b = new byte[1024];
-			for(int n; (n = in.read(b)) != -1;) {
-				stream.append(new String(b, 0, n));
-			}
-			String[] lines = stream.toString().split("\\n");
-			consumer_key = lines[0];
-			consumer_secret = lines[1];
-		} catch (IOException e) {
+		String[] keys = Utils.getKeys(getAssets());
+		if(keys.length == 0) {
 			Log.e("Evernote", "API keys not found");
 			// also let the user know there's an error
 			Toast t = Toast.makeText(getApplicationContext(), "Evernote configured incorrectly", Toast.LENGTH_SHORT);
 			t.show();
 			return;
 		}
+		String consumer_key = keys[0];
+		String consumer_secret = keys[1];
 		// try to authenticate
 		EvernoteSession mEvernoteService = EvernoteSession.getInstance(this, consumer_key, consumer_secret, EVERNOTE_SERVICE);
 		mEvernoteService.authenticate(this);

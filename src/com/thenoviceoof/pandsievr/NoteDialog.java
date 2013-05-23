@@ -117,7 +117,7 @@ public class NoteDialog extends Activity {
 			note.setAttributes(attrs);
 			try {
 				final Activity noteDialog = this;
-				Toast t = Toast.makeText(getApplicationContext(), "Trying to upload thought...", Toast.LENGTH_LONG);
+				Toast t = Toast.makeText(getApplicationContext(), "Trying to upload thought...", Toast.LENGTH_SHORT);
 				t.show();
 				mEvernoteService.getClientFactory().createNoteStoreClient().createNote(note, new OnClientCallback<Note>() {
 					@Override

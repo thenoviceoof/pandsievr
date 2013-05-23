@@ -21,8 +21,7 @@ public final class R {
     }
     public static final class layout {
         public static final int esdk__webview=0x7f030000;
-        public static final int evernote_login_dialog=0x7f030001;
-        public static final int note_dialog=0x7f030002;
+        public static final int note_dialog=0x7f030001;
     }
     public static final class menu {
         public static final int esdk__oauth=0x7f060000;

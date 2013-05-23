@@ -35,6 +35,14 @@ public final class R {
         public static final int esdk__evernote_login_failed=0x7f040001;
         public static final int esdk__evernote_login_successful=0x7f040002;
         public static final int esdk__loading=0x7f040006;
+        public static final int note_prompt=0x7f040008;
+        public static final int notify_draft=0x7f04000a;
+        public static final int notify_evernote_failure=0x7f04000f;
+        public static final int notify_evernote_success=0x7f04000e;
+        public static final int notify_failure=0x7f04000d;
+        public static final int notify_success=0x7f04000c;
+        public static final int notify_upload=0x7f04000b;
+        public static final int send_prompt=0x7f040009;
     }
     public static final class style {
         /** 

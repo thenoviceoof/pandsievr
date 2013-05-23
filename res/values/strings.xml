@@ -1,5 +1,13 @@
 <resources>
 
     <string name="app_name">Pandsievr</string>
+    <string name="note_prompt">What\'s up?</string>
+    <string name="send_prompt">Send</string>
+    <string name="notify_draft">Saving draft...</string>
+    <string name="notify_upload">Uploading thought...</string>
+    <string name="notify_success">Thought uploaded!</string>
+    <string name="notify_failure">Thought could not be uploaded</string>
+    <string name="notify_evernote_success">Signed in with Evernote!</string>
+    <string name="notify_evernote_failure">Could not authenticate with Evernote</string>
 
 </resources>

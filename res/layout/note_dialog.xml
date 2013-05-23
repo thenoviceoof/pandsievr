@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:gravity="top|left"
-        android:hint="What's up?"
+        android:hint="@string/note_prompt"
         android:inputType="textMultiLine" />
 
     <LinearLayout
@@ -26,6 +26,6 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:onClick="saveMessage"
-			android:text="Send" />
+			android:text="@string/send_prompt" />
 	</LinearLayout>
 </RelativeLayout>

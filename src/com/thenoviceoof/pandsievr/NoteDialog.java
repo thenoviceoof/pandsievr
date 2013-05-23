@@ -72,7 +72,8 @@ public class NoteDialog extends Activity {
 		SharedPreferences.Editor prefsEditor = prefs.edit();
 		String text = noteText.getText().toString();
 		if(text.length() > 0) {
-			Toast t = Toast.makeText(getApplicationContext(), "Saving draft...", Toast.LENGTH_SHORT);
+			Toast t = Toast.makeText(getApplicationContext(),
+					getResources().getString(R.string.notify_draft), Toast.LENGTH_SHORT);
 			t.show();
 		}
 		prefsEditor.putString("note", text);
@@ -121,12 +122,15 @@ public class NoteDialog extends Activity {
 			note.setAttributes(attrs);
 			try {
 				final Activity noteDialog = this;
-				Toast t = Toast.makeText(getApplicationContext(), "Trying to upload thought...", Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(getApplicationContext(),
+						getResources().getString(R.string.notify_upload), Toast.LENGTH_SHORT);
 				t.show();
-				mEvernoteService.getClientFactory().createNoteStoreClient().createNote(note, new OnClientCallback<Note>() {
+				mEvernoteService.getClientFactory().createNoteStoreClient().createNote(note,
+						new OnClientCallback<Note>() {
 					@Override
 					public void onSuccess(final Note data) {
-						Toast.makeText(getApplicationContext(), "Thought uploaded", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(),
+								getResources().getString(R.string.notify_success), Toast.LENGTH_SHORT).show();
 						// delete the note
 						EditText t = (EditText)noteDialog.findViewById(R.id.note);
 						t.setText("");
@@ -135,12 +139,14 @@ public class NoteDialog extends Activity {
 					@Override
 					public void onException(Exception exception) {
 						Log.e("NoteDialog", "Error uploading note", exception);
-						Toast.makeText(getApplicationContext(), "Thought couldn't be uploaded", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(),
+								getResources().getString(R.string.notify_failure), Toast.LENGTH_SHORT).show();
 					}
 				});
 			} catch (TTransportException exception) {
 				Log.e("NoteDialog", "Error uploading note", exception);
-				Toast.makeText(getApplicationContext(), "Thought couldn't be uploaded", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(),
+						getResources().getString(R.string.notify_failure), Toast.LENGTH_SHORT).show();
 			}
 		} else {
 			// save the note locally
@@ -158,11 +164,13 @@ public class NoteDialog extends Activity {
 		case EvernoteSession.REQUEST_CODE_OAUTH:
 			if (resultCode == Activity.RESULT_OK) {
 				// check: if successful, route back to note and post
-				Toast t = Toast.makeText(getApplicationContext(), "Signed in with Evernote!", Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(getApplicationContext(),
+						getResources().getString(R.string.notify_evernote_success), Toast.LENGTH_SHORT);
 				t.show();
 				saveMessage(noteText);
 			} else {
-				Toast t = Toast.makeText(getApplicationContext(), "Evernote could not authenticate", Toast.LENGTH_SHORT);
+				Toast t = Toast.makeText(getApplicationContext(),
+						getResources().getString(R.string.notify_evernote_failure), Toast.LENGTH_SHORT);
 				t.show();
 			}
 			break;

@@ -31,7 +31,6 @@ TODO
    of uploads, and queue up uploads in the middle of a subway ride.
  - Remove the superfluous EvernoteLogin activity, and just open up an
    authentication thing if you're not logged in
- - Add geolocation to the notes
 
 
 NOTES

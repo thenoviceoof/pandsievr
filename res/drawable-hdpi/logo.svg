@@ -17,8 +17,8 @@
    inkscape:version="0.48.3.1 r9886"
    sodipodi:docname="logo.svg"
    inkscape:export-filename="/home/thenoviceoof/git/pandsievr/res/drawable-hdpi/logo.png"
-   inkscape:export-xdpi="18"
-   inkscape:export-ydpi="18">
+   inkscape:export-xdpi="13.5"
+   inkscape:export-ydpi="13.5">
   <defs
      id="defs4">
     <linearGradient
@@ -103,11 +103,11 @@
     <linearGradient
        id="linearGradient4015">
       <stop
-         style="stop-color:#009600;stop-opacity:1"
+         style="stop-color:#1b581b;stop-opacity:1"
          offset="0"
          id="stop4017" />
       <stop
-         style="stop-color:#00b400;stop-opacity:1"
+         style="stop-color:#9eed9e;stop-opacity:1"
          offset="1"
          id="stop4019" />
     </linearGradient>
@@ -805,9 +805,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="257.26446"
-     inkscape:cy="332.63917"
+     inkscape:zoom="1"
+     inkscape:cx="208.06132"
+     inkscape:cy="311.52967"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -865,7 +865,7 @@
      id="layer1"
      transform="translate(0,-572.36218)">
     <rect
-       style="fill:url(#linearGradient3879);fill-opacity:1;stroke:url(#linearGradient4021);stroke-width:5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:url(#linearGradient3879);fill-opacity:1;stroke:url(#linearGradient4021);stroke-width:15;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3004"
        width="460"
        height="459.99997"
@@ -888,7 +888,7 @@
        sodipodi:rx="130.74582"
        sodipodi:ry="128.44801"
        d="m 370.74582,190 a 130.74582,128.44801 0 1 1 -261.49164,0 130.74582,128.44801 0 1 1 261.49164,0 z"
-       transform="matrix(0.86889668,0.84284785,-0.84284787,0.86889666,193.45191,376.50631)" />
+       transform="matrix(0.86889668,0.84284785,-0.84284787,0.86889666,193.34376,376.59638)" />
     <path
        sodipodi:nodetypes="cssssssssc"
        inkscape:connector-curvature="0"

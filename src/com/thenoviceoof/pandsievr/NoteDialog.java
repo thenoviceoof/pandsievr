@@ -23,15 +23,24 @@
 
 package com.thenoviceoof.pandsievr;
 
+import java.io.IOException;
+import java.util.List;
+
 import com.evernote.client.android.EvernoteSession;
 import com.evernote.client.android.EvernoteUtil;
 import com.evernote.client.android.OnClientCallback;
 import com.evernote.edam.type.Note;
+import com.evernote.edam.type.NoteAttributes;
 import com.evernote.thrift.transport.TTransportException;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -83,6 +92,29 @@ public class NoteDialog extends Activity {
 			Note note = new Note();
 			note.setTitle("Untitled");
 			note.setContent(EvernoteUtil.NOTE_PREFIX + contents + EvernoteUtil.NOTE_SUFFIX);
+			// get some metadata
+			note.setCreated(System.currentTimeMillis());
+			NoteAttributes attrs = new NoteAttributes();
+			// do a super fast location lookup
+			LocationManager loc = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+			Location last = loc.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+			attrs.setLatitude(last.getLatitude());
+			attrs.setLongitude(last.getLongitude());
+			attrs.setAltitude(last.getAltitude());
+			if (Geocoder.isPresent()) {
+				Log.d("NoteDialog", "Geocoder present, trying to get location name");
+				Geocoder geo = new Geocoder(getApplicationContext());
+				List<Address> addrs;
+				try {
+					addrs = geo.getFromLocation(last.getLatitude(), last.getLongitude(), 1);
+					if (addrs.size() == 1) {
+						attrs.setPlaceName(addrs.get(0).getLocality());
+					}
+				} catch (IOException e) {
+					Log.e("NoteDialog", "Geocoder couldn't get a location name", e);
+				}
+			}
+			note.setAttributes(attrs);
 			try {
 				final Activity noteDialog = this;
 				Toast t = Toast.makeText(getApplicationContext(), "Trying to upload thought...", Toast.LENGTH_LONG);

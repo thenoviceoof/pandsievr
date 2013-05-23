@@ -59,21 +59,4 @@ public class EvernoteLogin extends Activity {
 		EvernoteSession mEvernoteService = EvernoteSession.getInstance(this, consumer_key, consumer_secret, EVERNOTE_SERVICE);
 		mEvernoteService.authenticate(this);
 	}
-
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		switch(requestCode) {
-		// Update UI when oauth activity returns result
-		case EvernoteSession.REQUEST_CODE_OAUTH:
-			if (resultCode == Activity.RESULT_OK) {
-				// check: if successful, route back to note and post
-				finish();
-			} else {
-				Toast t = Toast.makeText(getApplicationContext(), "Evernote could not authenticate", Toast.LENGTH_SHORT);
-				t.show();
-			}
-			break;
-		}
-	}
 }

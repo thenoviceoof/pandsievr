@@ -66,8 +66,7 @@ public class NoteDialog extends Activity {
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 	}
 
-	public void onStop() {
-		super.onStop();
+	private void saveText() {
 		// save the text
 		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 		SharedPreferences.Editor prefsEditor = prefs.edit();
@@ -78,6 +77,11 @@ public class NoteDialog extends Activity {
 		}
 		prefsEditor.putString("note", text);
 		prefsEditor.commit();
+	}
+
+	public void onStop() {
+		super.onStop();
+		saveText();
 	}
 
 	public void saveMessage(View view) {
@@ -140,11 +144,28 @@ public class NoteDialog extends Activity {
 			}
 		} else {
 			// save the note locally
-			// ...
+			saveText();
 			// have the user login with Evernote
 			mEvernoteService.authenticate(this);
-			Intent intent = new Intent(this, EvernoteLogin.class);
-			startActivity(intent);
+		}
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(requestCode) {
+		// Update UI when oauth activity returns result
+		case EvernoteSession.REQUEST_CODE_OAUTH:
+			if (resultCode == Activity.RESULT_OK) {
+				// check: if successful, route back to note and post
+				Toast t = Toast.makeText(getApplicationContext(), "Signed in with Evernote!", Toast.LENGTH_SHORT);
+				t.show();
+				saveMessage(noteText);
+			} else {
+				Toast t = Toast.makeText(getApplicationContext(), "Evernote could not authenticate", Toast.LENGTH_SHORT);
+				t.show();
+			}
+			break;
 		}
 	}
 }
